@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	version="2.0">
+	
+	<!-- FGL Für jedes Kapitel / Beispiel ein eigenes Schema genommen. Hier anpassen -->
+	<persistence-unit name="TryoutHibernateBinaryImage001" transaction-type="RESOURCE_LOCAL">	
+		<!-- folgende Zeile dem Beispiel entnommen und hinzugefügt: http://javahowto.blogspot.de/2006/07/helloworld-with-jpa-hibernate-and.html -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+				
+		<!-- FGL: Hier nur die Klassen verwenden, die auch im Projekt vorhanden sind -->
+		<!-- <class>de.jpainfo.model.Kunde</class> --> 
+		
+		<properties>
+			<!-- Verweis auf die hibernate konfiguration -->
+			<property name="hibernate.ejb.cfgfile" value="hibernate.cfg.xml"/>	
+		
+		
+				<!-- OHNE VERWENDUNG DER ENTITY-MANAGER FACTORY ist untenstehende Konfiguration nicht notwendig, 
+		bei Verwendung der Entity-Manager Factory aber unbedingt hinzufügen, was sonst per Konfigurationsklassen künstlich gesetzt wird
+		cfg.setProperty("hibernate.dialect","tryout.hibernate.dialect.SQLiteDialect" );
+		cfg.setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC");
+		cfg.setProperty("hibernate.connection.url", "jdbc:sqlite:c:\\server\\SQLite\\TryOutEnumeration005.sqlite");
+		cfg.setProperty("hibernate.connection.username", "");
+		cfg.setProperty("hibernate.connection.password", "");
+		cfg.setProperty("hibernate.hbm2ddl.auto", "create"); //! Damti wird die Datenbank und sogar die Tabellen darin automatisch NEU erstellt.
+		cfg.setProperty("cache.provider_class", "org.hibernate.cache.NoCacheProvider");
+		cfg.setProperty("current_session_context_class", "thread");
+		 -->
+		
+			<!-- z.B. fuer MySQL -->
+<!-- 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> -->
+
+			<!-- z.B. fuer SQLLite -->
+			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+			
+			<!-- FGL: Beispielschema für 2. Kapitel, x. Beispiel, entsprechend auch in de.jpainfo.test.DB.java ändern. -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank02b04" /> -->
+
+			<!-- FGL: Für mein aktuell verwendetes Beispiel -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:c:\\server\\SQLite\\TryoutHibernateBinaryImage001.sqlite" />
+			
+			<!-- FGL: Beispielschema für 2. Kapitel, x. Beispiel, entsprechend auch in de.jpainfo.test.DB.java ändern. -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="lindhaueradmin" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="1fgl2fgl" /> -->
+
+			<!-- FGL: Für mein aktuell verwendetes Beispiel -->
+			<property name="javax.persistence.jdbc.user" value="" />
+			<property name="javax.persistence.jdbc.password" value="" />
+            
+            <!-- FGL: Folgende Zeile dem Beispiel entnommen und hinzugefügt: http://stackoverflow.com/questions/16752441/java-persistence-api-hibernate-unable-to-build-entitymanagerfactory -->
+            <!-- mal einen echten MySQL Dialekt probieren <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/> -->
+<!--             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/> -->
+            
+            <!-- FGL: Für mein aktuell verwendetes Beispiel -->
+            <property name="hibernate.dialect" value="tryout.hibernate.SQLiteDialect"/>
+            
+            <!-- create, d.h. immer neu erzeugen. Ohne also die Tabelle immer neu zu füllen, bleibt sie leer. - UPDATE, d.h. Werte bleiben erhalten. -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			 
+			<property name="hibernate.show_sql" value="true" />
+			
+			<!-- FGL: Ausgabe von Query-Hint-Kommentaren, siehe Buch Seite 183 -->
+			<property name="hibernate.use_sql_comments" value="true" />			           		
+		</properties>
+	</persistence-unit>
+</persistence>
