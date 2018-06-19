@@ -20,6 +20,21 @@ public class TryoOutHexCellExecuteHqlMain {
 		//Erzeuge den Entity Manager als Ausgangspunkt für die Abfragen. !!! Damit Hibernate mit JPA funktioniert, braucht man die Datei META-INF\persistence.xml. Darin wird die persistence-unit angegeben.		
 		EntityManager em = objContextHibernate.getEntityManager("TryOutHibernateBinaryImage001");
 		
+		
+		//++++ Merke Code um ein Blob aus der Datenbank zu lesen
+		/*
+		 * while (rs.next()) 
+            {
+                Blob image_blob=rs.getBlob("image_100x100");
+                int blobLength = (int) image_blob.length(); 
+                byte[] blobAsBytes = image_blob.getBytes(1, blobLength); 
+                InputStream in=new ByteArrayInputStream( blobAsBytes );
+                BufferedImage image_bf = ImageIO.read(in); 
+                ImageIO.write(image_bf, "PNG", new File(folder_path+"/"+rs.getString("name"))); 
+            }
+		 */
+		
+		
 		//TODO: Prüfe die Existenz der Datenbank ab. Ohne die erstellte Datenbank und die Erstellte Datenbanktabelle kommt es hier zu einem Fehler.
 		//           Darum muss ich den Code immer erst auskommentieren, nachdem ich die Datenbank gelöscht habe.
 		

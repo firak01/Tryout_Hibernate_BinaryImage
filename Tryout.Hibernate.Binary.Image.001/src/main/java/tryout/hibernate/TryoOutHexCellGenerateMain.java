@@ -26,6 +26,13 @@ public class TryoOutHexCellGenerateMain {
 		EntityManager em = objContextHibernate.getEntityManager("TryoutHibernateBinaryImage001");
 		
 		
+		/**
+		 * Merke: Code um ein Image als Blob in die Datenbank zu schreiben.
+		 * 1. Siehe UIHelperDummy, um mit dem InputStream zu arbeiten
+		 * ...
+		 * Buch.. Seite 130ff.
+		 */
+		
 		/*++++++++++++++*/
 		//Erzeugen der Entities		
 		Session session = objContextHibernate.getSession();
