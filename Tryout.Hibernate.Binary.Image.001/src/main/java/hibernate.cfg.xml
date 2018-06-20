@@ -11,7 +11,14 @@
 	<property name="format_sql">true</property>
 	
 	<!--  <property name="dialect">org.hibernate.dialect.SQLiteDialect</property> -->
-	<property name="dialect">tryout.hibernate.dialect.SQLiteDialect</property>
+	
+	
+	<!-- wohl eine etwas ältere Version, aber nur 1 .jar Datei und vielleicht auch mit einer alten Java Version 1.6 nutzbar! -->
+	<!-- <property name="dialect">tryout.hibernate.dialect.SQLiteDialect</property> --> 
+	
+	<!-- Per Maven einbundene 'neuerer' Dialekt -->
+	<property name="dialect">com.enigmabridge.hibernate.dialect.SQLiteDialect</property>
+	
 	
 	<!-- Database Connection settings -->
 	<property name="connection.driver_class">org.sqlite.JDBC</property>
@@ -30,6 +37,10 @@
 	     ABER: keine Updates. Daher im Code (...main... -Klasse) die Konfiguration "übersteuert" mit dem Parameter UPDATE
 	     Bzw. in diesem Fall wird im Code keine Konfiguration vewendet, daher bleibt es bei UPDATE. -->
 	<property name="hibernate.hbm2ddl.auto">update</property>
+		
+	<!-- NEU: Versuche es zu ermoeglichen, dass Streams für das speichern als Blob erlaubt sind. -->
+	<property name="hibernate.jdbc.use_streams_for_binary">true</property>
+	
 		
 	<!-- FGL: So werden die Klassen für das Mapping herangezogen, aber: Dabei werden Annotations verwendet. 
 	Merke: Jede hier genannte Klasse muss auch existieren, sonst fehler 

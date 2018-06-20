@@ -1,6 +1,7 @@
 package tryout.hibernate;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -52,6 +54,25 @@ public class HexCell implements Serializable{
 //		@AttributeOverride(name = "mapY", column= @Column(name="Y", length = 2))
 //	})
 	private CellId id;
+	
+	
+	//NEU IN DIESEM TRYOUT: BLOB	
+	//private java.sql.Blob imageBlob01; //Das geht so nicht. Liegt vermutlich am JDBC Treiber für die SQLITE Datenbank
+	@Transient
+	private Blob blobImageBlob01;
+	
+	//Alternativer Lösungsversuch, aber nur als Byte-Array
+	@Transient
+	private byte[] imageBlob01;
+	
+	
+	
+	@Transient
+	private String sImageBlob01;
+	
+	@Transient
+	private Long lngImageBlob01;
+	
 	
 	//Der Default Contruktor wird für JPA - Abfragen wohl benötigt
 	 public HexCell(){
@@ -105,6 +126,44 @@ public class HexCell implements Serializable{
 			Integer intValue = new Integer(iValue);
 			String sY = intValue.toString();
 			this.getId().setMapY(sY);
+		}
+		
+		@Access(AccessType.PROPERTY)
+		@Lob //Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.
+		@Column(name="image01", nullable=true)	
+		public  byte[] getImage01() {
+			return this.imageBlob01;
+		}		
+		public void setImage01(byte[] imageBlob) {
+			this.imageBlob01 = imageBlob;
+		}
+		
+		@Access(AccessType.PROPERTY)
+		@Column(name="image01name", nullable=false)
+		public String getImage01Name() {
+			return this.sImageBlob01;
+		}
+		public void setImage01Name(String sFileName) {
+			this.sImageBlob01 = sFileName;
+		}
+		
+		@Access(AccessType.PROPERTY)
+		@Column(name="image01length", nullable=false)
+		public long getImage01Length() {
+			return this.lngImageBlob01;
+		}
+		public void setImage01Length(long lngFileSize) {
+			this.lngImageBlob01 = lngFileSize;
+		}
+		
+		@Access(AccessType.PROPERTY)
+		@Lob //Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.
+		@Column(name="image01blob", nullable=true)	
+	    public Blob getImage01Blob() {
+			return this.blobImageBlob01;
+		}		
+		public void setImage01Blob(Blob imageBlob) {
+			this.blobImageBlob01 = imageBlob;
 		}
 	    
 }

@@ -15,10 +15,29 @@
 		<artifactId>hibernate-entitymanager</artifactId>
 		<version>4.2.4.Final</version>
 	</dependency>
+<!-- 	<dependency> -->
+<!-- 		<groupId>org.xerial</groupId> -->
+<!-- 		<artifactId>sqlite-jdbc</artifactId> -->
+<!-- 		<version>3.7.2</version> -->
+<!-- 	</dependency> -->
 	<dependency>
 		<groupId>org.xerial</groupId>
 		<artifactId>sqlite-jdbc</artifactId>
-		<version>3.7.2</version>
+		<version>3.23.1</version>
 	</dependency>  
+	
+	<!-- Einen anderen Hibernate Dialekt einbinden für Hibernate 4...
+	     siehe hier: https://github.com/EnigmaBridge/hibernate4-sqlite-dialect -->
+	<!-- Diesen dann bekanntmachen unter dem Namen:  
+	a) Set the dialect property hibernate.dialect to the class name com.enigmabridge.hibernate.dialect.SQLiteDialect
+	b) hibernate.properties
+	   hibernate.dialect = com.enigmabridge.hibernate.dialect.SQLiteDialect	 	   
+	-->
+	<dependency>
+	  <groupId>com.enigmabridge</groupId>
+	  <artifactId>hibernate4-sqlite-dialect</artifactId>
+	  <version>0.1.2</version>
+	</dependency>
+	
   </dependencies>
 </project>
