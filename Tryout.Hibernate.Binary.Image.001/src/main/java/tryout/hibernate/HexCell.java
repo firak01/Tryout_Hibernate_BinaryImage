@@ -93,8 +93,13 @@ public class HexCell implements Serializable{
 			return this.id;
 		}
 		
+		@Access(AccessType.PROPERTY)
+		@Column(name="MAPMAP", nullable=false, columnDefinition="integer default 0")
 		public String getMapAlias(){
 		   	return this.getId().getMapAlias();
+		}
+		public void setMapAlias(String sAlias){						
+			this.getId().setMapAlias(sAlias);
 		}
 		
 		
@@ -129,7 +134,8 @@ public class HexCell implements Serializable{
 		}
 		
 		@Access(AccessType.PROPERTY)
-		@Lob //Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.
+		//ABER SQLite: Probleme beim Holen der Daten per HQL. ... @Lob auch ohne dies Annotation wird ein blob in der Datenbank angelegt... UND Nur so kann dann per HQL wieder auf diese Zelle zugegriffen werden. 
+		//Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.		
 		@Column(name="image01", nullable=true)	
 		public  byte[] getImage01() {
 			return this.imageBlob01;
@@ -156,14 +162,14 @@ public class HexCell implements Serializable{
 			this.lngImageBlob01 = lngFileSize;
 		}
 		
-		@Access(AccessType.PROPERTY)
-		@Lob //Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.
-		@Column(name="image01blob", nullable=true)	
-	    public Blob getImage01Blob() {
-			return this.blobImageBlob01;
-		}		
-		public void setImage01Blob(Blob imageBlob) {
-			this.blobImageBlob01 = imageBlob;
-		}
-	    
+//		@Access(AccessType.PROPERTY)
+//		@Lob //Merke: dependent on the hibernate version, the Lob annotation could have no type parameter. quote from here: @Lob no longer has attributes, the lob type (CLOB, BLOB) is guessed. If the underlying type is a String or an array of character then CLOB are used. Othersise BLOB are used.
+//		@Column(name="image01blob", nullable=true)	
+//	    public Blob getImage01Blob() {
+//			return this.blobImageBlob01;
+//		}		
+//		public void setImage01Blob(Blob imageBlob) {
+//			this.blobImageBlob01 = imageBlob;
+//		}
+//	    
 }

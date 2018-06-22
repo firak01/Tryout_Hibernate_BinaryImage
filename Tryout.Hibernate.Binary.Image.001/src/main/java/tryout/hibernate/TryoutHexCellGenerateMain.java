@@ -202,7 +202,7 @@ public class TryoutHexCellGenerateMain {
 				//Das bekommt man auch persistiert.
 				//Aber: Streamw wären besser. Diese Vorgehensweise soll wertvollen Java-Heap-Speicher verbrauchen. Alles wird dort erst einmal abgelegt.
 				//objCellTemp.setImage01(imageBytes);
-				objCellTemp.setImage01Blob(imageBlob);
+//	DEAKTIVIERT, WEIL IN DER DB PRobleme mit HQL beim Holen der Daten....			objCellTemp.setImage01Blob(imageBlob);
 				objCellTemp.setImage01Name(sTileIconName);
 				
 				//Das wäre das Auslesen eines schon gespeicherten Bilds
