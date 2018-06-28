@@ -170,6 +170,5 @@ public class HexCell implements Serializable{
 //		}		
 //		public void setImage01Blob(Blob imageBlob) {
 //			this.blobImageBlob01 = imageBlob;
-//		}
-//	    
+//		}	    
 }

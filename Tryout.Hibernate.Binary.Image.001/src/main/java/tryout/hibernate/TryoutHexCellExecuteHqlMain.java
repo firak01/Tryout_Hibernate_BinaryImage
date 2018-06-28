@@ -17,6 +17,10 @@ import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 
+/**Lies das zuvor in die Datenbank per ByteArrayMain eingelesene Bild aus.
+ * @author lindhauer
+ *
+ */
 public class TryoutHexCellExecuteHqlMain {
 
 	/** Hierdurch wird deutlich, dass eine STRING-WERT Spalte 
